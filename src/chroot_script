@@ -43,6 +43,9 @@ pushd /home/pi
   pushd OctoPrint
     sudo -u pi /home/pi/oprint/bin/python setup.py install
   popd
+  
+  #LC Display code
+  sudo -u pi git clone https://bitbucket.org/hungerpirat/mrbeam_lcd.git
 
   #Make sure user pi has access to serial ports
   sudo usermod -a -G tty pi
@@ -116,6 +119,8 @@ unpackRoot
 
 #setup runlevels for initscripts
 sudo update-rc.d octoprint defaults 99
+# enable the lc display at start
+sudo update-rc.d lcdisplay defaults 99
 
 #cleanup
 fixLd
