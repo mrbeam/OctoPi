@@ -11,6 +11,7 @@ fi
 
 [ -n "$OCTOPI_WORKSPACE" ] || OCTOPI_WORKSPACE=$SCRIPT_PATH/workspace
 [ -n "$CHROOT_SCRIPT_PATH" ] || CHROOT_SCRIPT_PATH=$SCRIPT_PATH/chroot_script
+[ -n "$CHROOT_MRBEAM_PATH" ] || CHROOT_MRBEAM_PATH=$SCRIPT_PATH/chroot_mrbeam
 [ -n "$MOUNT_PATH" ] || MOUNT_PATH=$OCTOPI_WORKSPACE/mount
 
 echo "================================================================"
@@ -20,5 +21,6 @@ echo "IMAGE_PATH = $IMAGE_PATH"
 echo "ZIP_IMG = $ZIP_IMG"
 echo "OCTOPI_WORKSPACE = $OCTOPI_WORKSPACE"
 echo "CHROOT_SCRIPT_PATH = $CHROOT_SCRIPT_PATH"
+echo "CHROOT_MRBEAM_PATH = $CHROOT_MRBEAM_PATH"
 echo "MOUNT_PATH = $MOUNT_PATH"
 echo "================================================================"

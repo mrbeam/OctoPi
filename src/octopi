@@ -31,8 +31,15 @@ pushd $OCTOPI_WORKSPACE
     
     chroot . usr/bin/qemu-arm-static /bin/bash /chroot_script
     
+    #mr beam stuff
+    cp $CHROOT_MRBEAM_PATH chroot_mrbeam
+    chmod 755 chroot_mrbeam
+    
+    chroot . usr/bin/qemu-arm-static /bin/bash /chroot_mrbeam
+    
     #cleanup
     rm chroot_script
+    rm chroot_mrbeam
     rm -rfv filesystem
   popd
   

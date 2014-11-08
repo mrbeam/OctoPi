@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+set -x
+
+sudo apt-get install hostapd firmware-ralink isc-dhcp-server
+
+pushd /home/pi
+  
+  #LC Display code
+  sudo -u pi git clone https://bitbucket.org/hungerpirat/mrbeam_lcd.git
+  
+  # python wifi
+  sudo pip install wifi
+  
+  # compile new version of iw that supports ap mode scanning
+  apt-get install libnl-dev
+  wget https://www.kernel.org/pub/software/network/iw/iw-3.15.tar.gz
+  tar -xzvf iw-3.15.tar.gz
+  cd iw-3.15
+  make
+  make install
+  rm -rf iw-3.15
+  rm iw-3.15.tar.gz
+  
+popd
+
+# enable the lc display at start
+sudo update-rc.d lcdisplay defaults 99

@@ -17,7 +17,7 @@ export HOME
 case "$1" in
     start)
         echo "Starting Display"
-        /home/pi/mrbeam_lcd/message.py  2>&1 &
+        /home/pi/lcd/message.py  2>&1 &
     ;;
     stop)
         echo "Stopping Display"
