@@ -40,8 +40,8 @@ pushd /home/pi
   
   #OctoPrint
   sudo -u pi git clone https://github.com/mrbeam/OctoPrint.git
-  sudo -u pi git checkout mrbeam
   pushd OctoPrint
+    sudo -u pi git checkout mrbeam
     sudo -u pi /home/pi/oprint/bin/python setup.py install
   popd
   
