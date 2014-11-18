@@ -23,5 +23,10 @@ pushd /home/pi
   
 popd
 
+# change the hostname to mr beam
+echo mrbeam > /etc/hostname
+sed -i 's@raspberrypi@mrbeam@' /etc/hosts
+sed -i 's@octopi@mrbeam@' /etc/hosts
+
 # enable the lc display at start
 sudo update-rc.d lcdisplay defaults 99
