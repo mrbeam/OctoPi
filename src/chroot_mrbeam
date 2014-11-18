@@ -1,25 +1,27 @@
 #!/usr/bin/env bash
 set -x
 
-sudo apt-get install hostapd firmware-ralink isc-dhcp-server
+sudo apt-get -y install firmware-ralink 
+# install netconnectd deps (https://github.com/foosel/netconnectd)
+sudo apt-get -y install hostapd dnsmasq logrotate
 
 pushd /home/pi
   
   #LC Display code
   sudo -u pi git clone https://github.com/mrbeam/lcd.git
   
-  # python wifi
-  sudo pip install wifi
+  #netconnectd
+  sudo -u pi git clone https://github.com/mrbeam/netconnectd.git
+  pushd netconnectd
+      sudo -u pi /home/pi/oprint/bin/python setup.py install
+      sudo -u pi /home/pi/oprint/bin/python setup.py install_extras
+  popd
   
-  # compile new version of iw that supports ap mode scanning - not required anymore when using netconnectd
-  # apt-get install libnl-dev
-  # wget https://www.kernel.org/pub/software/network/iw/iw-3.15.tar.gz
-  # tar -xzvf iw-3.15.tar.gz
-  # cd iw-3.15
-  # make
-  # make install
-  # rm -rf iw-3.15
-  # rm iw-3.15.tar.gz
+  # netdonnectd plugin for octoprint
+  sudo -u pi git clone https://github.com/OctoPrint/OctoPrint-Netconnectd.git
+  pushd OctoPrint-Netconnectd
+      sudo -u pi /home/pi/oprint/bin/python setup.py install
+  popd
   
 popd
 
@@ -30,3 +32,13 @@ sed -i 's@octopi@mrbeam@' /etc/hosts
 
 # enable the lc display at start
 sudo update-rc.d lcdisplay defaults 99
+
+# netconnectd configuration
+# enable dhcp client timeout (see installation instructions for netconnectd)
+sed -i "s@#timeout 60@timeout 60@" /etc/dhcp/dhclient.conf
+# TODO depends strongly on the config yaml layout - make more agnostic to changes?
+sed -i "s@free: true@free: false@" /etc/netconnectd.yaml
+sed -i -E "s@ssid: .*\$@ssid: MrBeamAP@" /etc/netconnectd.yaml
+sed -i "s@psk: .*\$@psk: MrBeam!!@" /etc/netconnectd.yaml
+# enable netconnectd at start
+sudo update-rc.d netconnectd defaults 98
