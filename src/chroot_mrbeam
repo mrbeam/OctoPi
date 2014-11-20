@@ -15,8 +15,8 @@ pushd /home/pi
   #netconnectd
   sudo -u pi git clone https://github.com/mrbeam/netconnectd.git
   pushd netconnectd
-      sudo /home/pi/oprint/bin/python setup.py install
-      sudo /home/pi/oprint/bin/python setup.py install_extras
+      sudo python setup.py install
+      sudo python setup.py install_extras
   popd
   
   # netdonnectd plugin for octoprint
@@ -36,6 +36,9 @@ sudo sed -i 's@octopi@mrbeam@' /etc/hosts
 sudo update-rc.d lcdisplay defaults 99
 
 # netconnectd configuration
+# disable wpa_supplicant
+#wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+sudo sed -i "s@wpa-roam@#wpa-roam@" /etc/network/interfaces
 # enable dhcp client timeout (see installation instructions for netconnectd)
 sudo sed -i "s@#timeout 60@timeout 60@" /etc/dhcp/dhclient.conf
 # TODO depends strongly on the config yaml layout - make more agnostic to changes?
