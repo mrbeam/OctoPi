@@ -4,6 +4,8 @@ set -x
 sudo apt-get -y install firmware-ralink 
 # install netconnectd deps (https://github.com/foosel/netconnectd)
 sudo apt-get -y install hostapd dnsmasq logrotate
+sudo update-rc.d -f hostapd remove
+sudo update-rc.d -f dnsmasq remove
 
 pushd /home/pi
   
@@ -13,8 +15,8 @@ pushd /home/pi
   #netconnectd
   sudo -u pi git clone https://github.com/mrbeam/netconnectd.git
   pushd netconnectd
-      sudo -u pi /home/pi/oprint/bin/python setup.py install
-      sudo -u pi /home/pi/oprint/bin/python setup.py install_extras
+      sudo /home/pi/oprint/bin/python setup.py install
+      sudo /home/pi/oprint/bin/python setup.py install_extras
   popd
   
   # netdonnectd plugin for octoprint
@@ -27,18 +29,18 @@ popd
 
 # change the hostname to mr beam
 echo mrbeam > /etc/hostname
-sed -i 's@raspberrypi@mrbeam@' /etc/hosts
-sed -i 's@octopi@mrbeam@' /etc/hosts
+sudo sed -i 's@raspberrypi@mrbeam@' /etc/hosts
+sudo sed -i 's@octopi@mrbeam@' /etc/hosts
 
 # enable the lc display at start
 sudo update-rc.d lcdisplay defaults 99
 
 # netconnectd configuration
 # enable dhcp client timeout (see installation instructions for netconnectd)
-sed -i "s@#timeout 60@timeout 60@" /etc/dhcp/dhclient.conf
+sudo sed -i "s@#timeout 60@timeout 60@" /etc/dhcp/dhclient.conf
 # TODO depends strongly on the config yaml layout - make more agnostic to changes?
-sed -i "s@free: true@free: false@" /etc/netconnectd.yaml
-sed -i -E "s@ssid: .*\$@ssid: MrBeamAP@" /etc/netconnectd.yaml
-sed -i "s@psk: .*\$@psk: MrBeam!!@" /etc/netconnectd.yaml
+sudo sed -i "s@free: true@free: false@" /etc/netconnectd.yaml
+sudo sed -i -E "s@ssid: .*\$@ssid: MrBeamAP@" /etc/netconnectd.yaml
+sudo sed -i "s@psk: .*\$@psk: MrBeam!!@" /etc/netconnectd.yaml
 # enable netconnectd at start
 sudo update-rc.d netconnectd defaults 98
