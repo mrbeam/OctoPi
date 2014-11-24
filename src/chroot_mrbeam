@@ -4,6 +4,9 @@ set -x
 # imagemagick for pic engraving support
 sudo apt-get -y install imagemagick libboost-python1.49.0 libmagick++5 python-pythonmagick
 
+# libxml2 for parsing svg files
+sudo apt-get -y install python-lxml
+
 sudo apt-get -y install firmware-ralink 
 # install netconnectd deps (https://github.com/foosel/netconnectd)
 sudo apt-get -y install hostapd dnsmasq logrotate
