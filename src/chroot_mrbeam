@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -x
 
+# imagemagick for pic engraving support
+sudo apt-get -y install imagemagick libboost-python1.49.0 libmagick++5 python-pythonmagick
+
 sudo apt-get -y install firmware-ralink 
 # install netconnectd deps (https://github.com/foosel/netconnectd)
 sudo apt-get -y install hostapd dnsmasq logrotate
@@ -24,7 +27,11 @@ pushd /home/pi
   pushd OctoPrint-Netconnectd
       sudo -u pi /home/pi/oprint/bin/python setup.py install
   popd
-  
+ 
+  # mrbeam inkscape ext // for svg2gcode plugin
+  sudo -u pi git clone https://github.com/mrbeam/mrbeam-inkscape-ext.git
+
+
 popd
 
 # change the hostname to mr beam
