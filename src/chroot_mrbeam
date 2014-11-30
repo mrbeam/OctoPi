@@ -13,6 +13,12 @@ sudo apt-get -y install hostapd dnsmasq logrotate
 sudo update-rc.d -f hostapd remove
 sudo update-rc.d -f dnsmasq remove
 
+sudo apt-get -y install nginx
+pushd /etc/nginx/sites-enabled
+    sudo rm default
+    sudo ln -s ../sites-available/octoprint
+popd
+
 pushd /home/pi
   
   #LC Display code
