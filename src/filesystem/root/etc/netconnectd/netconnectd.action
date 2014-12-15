@@ -1,0 +1,5 @@
+#!/bin/sh
+
+if [$6 = "False" && $5 = "True"]; then
+    sudo service octoprint restart
+fi
