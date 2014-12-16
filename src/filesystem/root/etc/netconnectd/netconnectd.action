@@ -1,8 +1,0 @@
-#!/bin/sh
-
-if [ "$6" = "False" -a "$5" = "" ]; then
-    sudo service octoprint restart
-    logger "netconnectd.action: restarted octoprint"
-fi
-
-logger "netconnectd.action $1 $2 $3 $4 $5 $6"

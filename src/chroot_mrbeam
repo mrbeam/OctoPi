@@ -52,8 +52,8 @@ sudo sed -i "s@wpa-roam@#wpa-roam@" /etc/network/interfaces
 # enable dhcp client timeout (see installation instructions for netconnectd)
 sudo sed -i "s@#timeout 60@timeout 60@" /etc/dhcp/dhclient.conf
 # TODO depends strongly on the config yaml layout - make more agnostic to changes?
-sudo sed -i "s@free: true@free: false@" /etc/netconnectd/netconnectd.yaml
-sudo sed -i -E "s@ssid: .*\$@ssid: MrBeamAP@" /etc/netconnectd/netconnectd.yaml
-sudo sed -i "s@psk: .*\$@psk: MrBeam!!@" /etc/netconnectd/netconnectd.yaml
+sudo sed -i "s@free: true@free: false@" /etc/netconnectd.yaml
+sudo sed -i -E "s@ssid: .*\$@ssid: MrBeamAP@" /etc/netconnectd.yaml
+sudo sed -i "s@psk: .*\$@psk: MrBeam!!@" /etc/netconnectd.yaml
 # enable netconnectd at start
 sudo update-rc.d netconnectd defaults 98
