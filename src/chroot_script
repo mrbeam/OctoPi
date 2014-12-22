@@ -38,6 +38,14 @@ pushd /home/pi
   #build virtualenv
   sudo -u pi virtualenv --system-site-packages oprint
   
+  # Tornado-fix
+  sudo -u pi git clone https://github.com/nosyjoe/tornado.git
+  pushd tornado
+    sudo -u pi git checkout branch4.0-mrbeam
+    sudo -u pi /home/pi/oprint/bin/python setup.py build
+    sudo -u pi /home/pi/oprint/bin/python setup.py install
+  popd
+  
   #OctoPrint
   sudo -u pi git clone https://github.com/mrbeam/OctoPrint.git
   pushd OctoPrint
