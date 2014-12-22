@@ -17,10 +17,14 @@ pushd /home/pi
   
   #LC Display code
   sudo -u pi git clone https://github.com/mrbeam/lcd.git
+  pushd lcd
+      sudo -u pi git checkout mrbeam-stable
+  popd
   
   #netconnectd
   sudo -u pi git clone https://github.com/mrbeam/netconnectd.git
   pushd netconnectd
+      sudo -u pi git checkout mrbeam-stable
       sudo python setup.py install
       sudo python setup.py install_extras
   popd
@@ -28,11 +32,15 @@ pushd /home/pi
   # netdonnectd plugin for octoprint
   sudo -u pi git clone https://github.com/OctoPrint/OctoPrint-Netconnectd.git
   pushd OctoPrint-Netconnectd
+      sudo -u pi git checkout mrbeam-stable
       sudo -u pi /home/pi/oprint/bin/python setup.py install
   popd
  
   # mrbeam inkscape ext // for svg2gcode plugin
   sudo -u pi git clone https://github.com/mrbeam/mrbeam-inkscape-ext.git
+  pushd mrbeam-inkscape-ext
+      sudo -u pi git checkout mrbeam-stable
+  popd
 
 
 popd
