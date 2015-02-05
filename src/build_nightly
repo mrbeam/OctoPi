@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-BRANCH_OCTOPRINT=mrbeam
-BRANCH_INKEX=dev
-BRANCH_NETCONNECTD=mrbeam
-BRANCH_NETCONNECT_PLUGIN=mrbeam
-BRANCH_LCD=mrbeam
+export BRANCH_OCTOPRINT=mrbeam
+export BRANCH_INKEX=dev
+export BRANCH_NETCONNECTD=mrbeam
+export BRANCH_NETCONNECT_PLUGIN=mrbeam
+export BRANCH_LCD=mrbeam
 
 OCTOPI_PATH=$(dirname $(realpath -s $0))
 source $OCTOPI_PATH/config
