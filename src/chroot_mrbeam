@@ -1,8 +1,9 @@
 #!/usr/bin/env bash
 set -x
 
-# imagemagick for pic engraving support
-sudo apt-get -y install imagemagick libboost-python1.49.0 libmagick++5 python-pythonmagick
+# Pillow for pic engraving support
+sudo apt-get -y install python-dev python-setuptools libtiff4-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.5-dev tk8.5-dev python-tk
+pip install Pillow
 
 # libxml2 for parsing svg files
 sudo apt-get -y install python-lxml
@@ -18,13 +19,13 @@ pushd /home/pi
   #LC Display code
   sudo -u pi git clone https://github.com/mrbeam/lcd.git
   pushd lcd
-      sudo -u pi git checkout mrbeam-stable
+      sudo -u pi git checkout i${BRANCH_LCD}
   popd
   
   #netconnectd
   sudo -u pi git clone https://github.com/mrbeam/netconnectd.git
   pushd netconnectd
-      sudo -u pi git checkout mrbeam-stable
+      sudo -u pi git checkout ${BRANCH_NETCONNECTD}
       sudo python setup.py install
       sudo python setup.py install_extras
   popd
@@ -32,14 +33,14 @@ pushd /home/pi
   # netdonnectd plugin for octoprint
   sudo -u pi git clone https://github.com/OctoPrint/OctoPrint-Netconnectd.git
   pushd OctoPrint-Netconnectd
-      #sudo -u pi git checkout mrbeam-stable
+      sudo -u pi git checkout ${BRANCH_NETCONNECT_PLUGIN}
       sudo -u pi /home/pi/oprint/bin/python setup.py install
   popd
  
   # mrbeam inkscape ext // for svg2gcode plugin
   sudo -u pi git clone https://github.com/mrbeam/mrbeam-inkscape-ext.git
   pushd mrbeam-inkscape-ext
-      sudo -u pi git checkout mrbeam-stable
+      sudo -u pi git checkout ${BRANCH_INKEX}
   popd
 
 

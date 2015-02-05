@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+BRANCH_OCTOPRINT=mrbeam
+BRANCH_INKEX=dev
+BRANCH_NETCONNECTD=master
+BRANCH_NETCONNECT_PLUGIN=master
+BRANCH_LCD=master
+
+OCTOPI_PATH=$(dirname $(realpath -s $0))
+source $OCTOPI_PATH/config
+source $OCTOPI_PATH/octopi
