@@ -31,7 +31,7 @@ pushd /home/pi
   popd
   
   # netdonnectd plugin for octoprint
-  sudo -u pi git clone https://github.com/OctoPrint/OctoPrint-Netconnectd.git
+  sudo -u pi git clone https://github.com/mrbeam/OctoPrint-Netconnectd.git
   pushd OctoPrint-Netconnectd
       sudo -u pi git checkout ${BRANCH_NETCONNECT_PLUGIN}
       sudo -u pi /home/pi/oprint/bin/python setup.py install
@@ -39,7 +39,7 @@ pushd /home/pi
   
   # generic software update plugin for octoprint
   sudo -u pi git clone https://github.com/mrbeam/OctoPrint-SoftwareUpdate.git
-  pushd updateplugin
+  pushd OctoPrint-SoftwareUpdate
       #sudo -u pi git checkout mrbeam-stable
       sudo -u pi /home/pi/oprint/bin/python setup.py install
   popd
