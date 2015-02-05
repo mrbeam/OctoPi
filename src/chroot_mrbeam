@@ -37,6 +37,13 @@ pushd /home/pi
       sudo -u pi /home/pi/oprint/bin/python setup.py install
   popd
   
+  # generic software update plugin for octoprint
+  sudo -u pi git clone https://github.com/mrbeam/OctoPrint-SoftwareUpdate.git
+  pushd updateplugin
+      #sudo -u pi git checkout mrbeam-stable
+      sudo -u pi /home/pi/oprint/bin/python setup.py install
+  popd
+  
   # update plugin for octoprint
   sudo -u pi git clone https://github.com/mrbeam/updateplugin.git
   pushd updateplugin
