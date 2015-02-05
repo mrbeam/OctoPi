@@ -19,7 +19,7 @@ pushd /home/pi
   #LC Display code
   sudo -u pi git clone https://github.com/mrbeam/lcd.git
   pushd lcd
-      sudo -u pi git checkout i${BRANCH_LCD}
+      sudo -u pi git checkout ${BRANCH_LCD}
   popd
   
   #netconnectd
