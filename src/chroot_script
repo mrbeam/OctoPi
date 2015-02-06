@@ -16,7 +16,8 @@ unpackHome(){
   chown -hR pi /filesystem/home
   chgrp -hR pi /filesystem/home
   cp -av /filesystem/home/* /home/pi
-  cp -av /filesystem/home/.* /home/pi
+  # does only work if there is at least one dotfile in the directory
+  cp -av /filesystem/home/.??* /home/pi
 }
 
 unpackRoot(){
@@ -24,7 +25,7 @@ unpackRoot(){
 }
 
 unpackBoot(){
-  cp -av /filesystem/boot/* /boot
+  cp -av --no-preserve=ownership /filesystem/boot/* /boot
 }
 
 fixLd
