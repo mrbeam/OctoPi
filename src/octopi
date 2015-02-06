@@ -30,16 +30,21 @@ pushd $OCTOPI_WORKSPACE
     chmod 755 chroot_script
     
     chroot . usr/bin/qemu-arm-static /bin/bash /chroot_script
+    RETVAL=$?
     
-    #mr beam stuff
-    cp $CHROOT_MRBEAM_PATH chroot_mrbeam
-    chmod 755 chroot_mrbeam
-    
-    chroot . usr/bin/qemu-arm-static /bin/bash /chroot_mrbeam
+    if [ $RETVAL -eq 0 ]
+    then
+        #mr beam stuff
+        cp $CHROOT_MRBEAM_PATH chroot_mrbeam
+        chmod 755 chroot_mrbeam
+        chroot . usr/bin/qemu-arm-static /bin/bash /chroot_mrbeam
+        rm chroot_mrbeam
+    else
+        echo "chroot_script exited with $RETVAL"
+    fi
     
     #cleanup
     rm chroot_script
-    rm chroot_mrbeam
     rm -rfv filesystem
   popd
   
