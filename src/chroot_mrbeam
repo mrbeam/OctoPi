@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 set -x
 
+# exit script on any error
+set -e
+
 # Pillow for pic engraving support
 sudo apt-get -y install python-dev python-setuptools libtiff4-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.5-dev tk8.5-dev python-tk
 pip install Pillow
