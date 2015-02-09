@@ -1,10 +1,11 @@
-softwareupdate:
-    checks:
-      octoprint:
-        enabled: false
-    octoprint_restart_command: sudo service octoprint restart
-    environment_restart_command: sudo reboot
-    cache_ttl: 60
+plugins:
+    softwareupdate:
+        checks:
+            octoprint:
+                enabled: false
+        octoprint_restart_command: sudo service octoprint restart
+        environment_restart_command: sudo reboot
+        cache_ttl: 60
 webcam:
   stream: /webcam/?action=stream
   snapshot: http://127.0.0.1:8080/?action=snapshot
