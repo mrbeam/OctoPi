@@ -1,4 +1,15 @@
-CONFIG_DIR=$(dirname $(realpath -s $BASH_SOURCE))
+#!/usr/bin/env bash
+
+# make sure to export all the variables to make them available to the chroot scripts as well
+
+# customize the hostname 
+#export OVERRIDE_HOSTNAME=blueberrypi
+
+# skip octoprint installation in main build script 
+#export OVERRIDE_OCTOPRINT=yes
+
+CONFIG_DIR=$(realpath -s $(dirname $(realpath -s $BASH_SOURCE))/../../)
+VARIANT=$(basename $(dirname $(realpath -s $BASH_SOURCE)))
 export OCTOPRINT_BRANCH=devel
 export OCTOPIPANEL_BRANCH=devel
 
@@ -7,11 +18,9 @@ if [ -f $CONFIG_DIR/config.local ]; then
 fi
 
 [ -n "$SCRIPT_PATH" ] || export SCRIPT_PATH=$CONFIG_DIR
-[ -n "$IMAGE_PATH" ] || export IMAGE_PATH=$SCRIPT_PATH/image
-
-[ -n "$ZIP_IMG" ] || export ZIP_IMG=`ls -t $IMAGE_PATH/*-raspbian*.zip | head -n 1`
-
-[ -n "$OCTOPI_WORKSPACE" ] || export OCTOPI_WORKSPACE=$SCRIPT_PATH/workspace
+[ -n "$IMAGE_PATH" ] || export IMAGE_PATH=$SCRIPT_PATH/image-varients
+[ -n "$ZIP_IMG" ] || export ZIP_IMG=`ls -t $IMAGE_PATH/*-raspbian-bpi-R1-M1*.zip | head -n 1`
+[ -n "$OCTOPI_WORKSPACE" ] || export OCTOPI_WORKSPACE=$SCRIPT_PATH/workspace-${VARIANT}
 [ -n "$CHROOT_SCRIPT_PATH" ] || export CHROOT_SCRIPT_PATH=$SCRIPT_PATH/chroot_script
 [ -n "$MOUNT_PATH" ] || export MOUNT_PATH=$OCTOPI_WORKSPACE/mount
 [ -n "$OVERRIDE_HOSTNAME" ] || export OVERRIDE_HOSTNAME=octopi
@@ -26,3 +35,4 @@ echo "CHROOT_SCRIPT_PATH = $CHROOT_SCRIPT_PATH"
 echo "MOUNT_PATH = $MOUNT_PATH"
 echo "OVERRIDE_HOSTNAME = $OVERRIDE_HOSTNAME"
 echo "================================================================"
+
