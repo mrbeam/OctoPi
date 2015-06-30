@@ -1,4 +1,10 @@
 #!/usr/bin/env bash
+export BRANCH_OCTOPRINT=mrbeam-stable
+export BRANCH_INKEX=mrbeam-stable
+export BRANCH_NETCONNECTD=mrbeam-stable
+export BRANCH_NETCONNECT_PLUGIN=mrbeam-stable
+export BRANCH_LCD=mrbeam-stable
+
 OCTOPI_PATH=$(dirname $(realpath -s $0))
 source $OCTOPI_PATH/config
 source $OCTOPI_PATH/octopi

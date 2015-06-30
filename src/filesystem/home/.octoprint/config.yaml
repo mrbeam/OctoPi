@@ -2,7 +2,7 @@ plugins:
     softwareupdate:
         checks:
             octoprint:
-                enabled: false
+                update_folder: /home/pi/OctoPrint
         octoprint_restart_command: sudo service octoprint restart
         environment_restart_command: sudo reboot
         cache_ttl: 60
