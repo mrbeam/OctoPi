@@ -7,12 +7,11 @@ mkdir -p $OCTOPI_WORKSPACE
 mkdir -p $MOUNT_PATH
 
 pushd $OCTOPI_WORKSPACE
-  rm *.img
-  unzip $ZIP_IMG
-  RASPIAN_PATH=`ls | grep .img`
-  IMG_PATH="octopi.bin"
-  mv $RASPIAN_PATH $IMG_PATH
- 
+  IMG_PATH=`date -u +%Y%m%d_%H%M`
+
+  rm mrbeam*.img
+  cp $OPI_IMG 
+
   # mount root and boot partition
   sudo mount -o loop,offset=$((512*122880)) $IMG_PATH $MOUNT_PATH
   sudo mount -o loop,offset=$((512*8192)) $IMG_PATH $MOUNT_PATH/boot
@@ -28,25 +27,25 @@ pushd $OCTOPI_WORKSPACE
 
     #black magic of qemu-arm-static
     cp `which qemu-arm-static` usr/bin
-    cp $CHROOT_SCRIPT_PATH chroot_script
-    chmod 755 chroot_script
+    #cp $CHROOT_SCRIPT_PATH chroot_script
+    #chmod 755 chroot_script
     
-    chroot . usr/bin/qemu-arm-static /bin/bash /chroot_script
-    RETVAL=$?
+    #chroot . usr/bin/qemu-arm-static /bin/bash /chroot_script
+    #RETVAL=$?
     
     #if [ $RETVAL -eq 0 ]
     #then
-    #    #mr beam stuff
-    #    cp $CHROOT_MRBEAM_PATH chroot_mrbeam
-    #    chmod 755 chroot_mrbeam
-    #    chroot . usr/bin/qemu-arm-static /bin/bash /chroot_mrbeam
-    #    rm chroot_mrbeam
+        #mr beam stuff
+        cp $CHROOT_MRBEAM_PATH chroot_mrbeam
+        chmod 755 chroot_mrbeam
+        chroot . usr/bin/qemu-arm-static /bin/bash /chroot_mrbeam
+        rm chroot_mrbeam
     #else
     #    echo "chroot_script exited with $RETVAL"
     #fi
     
     #cleanup
-    rm chroot_script
+    #rm chroot_script
     rm -rfv filesystem
   popd
   
