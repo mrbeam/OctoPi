@@ -7,4 +7,8 @@ export BRANCH_LCD=mrbeam
 
 OCTOPI_PATH=$(dirname $(realpath -s $0))
 source $OCTOPI_PATH/config
-source $OCTOPI_PATH/octopi
+
+if [! -e $OPI_IMG ] then 
+  source $OCTOPI_PATH/octopi
+fi
+source $OCTOPI_PATH/octopi_beamify
