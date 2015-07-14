@@ -6,10 +6,12 @@
 mkdir -p $OCTOPI_WORKSPACE
 mkdir -p $MOUNT_PATH
 
+echo "BEAMIFY OctoPrint"
+
 pushd $OCTOPI_WORKSPACE
   IMG_PATH=mrbeam_build_`date -u +%Y%m%d_%H%M`.img
 
-  rm mrbeam*.img
+  rm -f mrbeam*.img
   cp $OPI_IMG $IMG_PATH
 
   # mount root and boot partition

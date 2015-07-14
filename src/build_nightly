@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 export BRANCH_OCTOPRINT=mrbeam
-export BRANCH_INKEX=dev
+export BRANCH_INKEX=mrbeam
 export BRANCH_NETCONNECTD=mrbeam
 export BRANCH_NETCONNECT_PLUGIN=mrbeam
 export BRANCH_LCD=mrbeam
@@ -8,7 +8,10 @@ export BRANCH_LCD=mrbeam
 OCTOPI_PATH=$(dirname $(realpath -s $0))
 source $OCTOPI_PATH/config
 
-if [! -e $OPI_IMG ] then 
+if [ -e $OCTOPI_WORKSPACE/$OPI_IMG ]
+then 
+  echo "OctoPi Image $OCTOPI_WORKSPACE/$OPI_IMG  is already prepared - skipped"
+else
   source $OCTOPI_PATH/octopi
 fi
 source $OCTOPI_PATH/octopi_beamify

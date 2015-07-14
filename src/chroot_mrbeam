@@ -47,12 +47,13 @@ pushd /home/pi
   #    sudo -u pi /home/pi/oprint/bin/python setup.py install
   #popd
   
+  # disabled until rewrite
   # update plugin for octoprint
-  sudo -u pi git clone https://github.com/mrbeam/updateplugin.git
-  pushd updateplugin
-      #sudo -u pi git checkout mrbeam-stable
-      sudo -u pi /home/pi/oprint/bin/python setup.py install
-  popd
+  #sudo -u pi git clone https://github.com/mrbeam/updateplugin.git
+  #pushd updateplugin
+  #    #sudo -u pi git checkout mrbeam-stable
+  #    sudo -u pi /home/pi/oprint/bin/python setup.py install
+  #popd
  
   # mrbeam inkscape ext // for svg2gcode plugin
   sudo -u pi git clone https://github.com/mrbeam/mrbeam-inkscape-ext.git
