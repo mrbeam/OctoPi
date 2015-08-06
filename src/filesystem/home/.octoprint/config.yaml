@@ -3,6 +3,10 @@ plugins:
         checks:
             octoprint:
                 update_folder: /home/pi/OctoPrint
+                type: github_commit
+                repo: OctoPrint
+                user: mrbeam
+                branch: mrbeam-stable
         octoprint_restart_command: sudo service octoprint restart
         environment_restart_command: sudo reboot
         cache_ttl: 60
