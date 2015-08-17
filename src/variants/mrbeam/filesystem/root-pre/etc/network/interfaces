@@ -1,0 +1,9 @@
+auto lo
+iface lo inet loopback
+
+iface eth0 inet dhcp
+
+allow-hotplug wlan0
+
+source /boot/octopi-wifi.txt
+source /etc/netconnectd/conf.d/interfaces

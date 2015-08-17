@@ -1,0 +1,4 @@
+# this is the interfaces file that netconnectd will use
+# for storing its configurations
+#
+# it is source'd in /etc/network/interfaces

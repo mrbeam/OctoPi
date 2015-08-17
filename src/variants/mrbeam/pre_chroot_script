@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -x
+set -e
+
+source /common.sh
+
+
+## netconnectd 
+if [ "$OCTOPI_INCLUDE_NETCONNECTD" == "yes" ]
+then
+  apt-get remove -y --purge raspberrypi-net-mods dhcpcd5 || true
+  unpack /filesystem/root-pre /
+fi

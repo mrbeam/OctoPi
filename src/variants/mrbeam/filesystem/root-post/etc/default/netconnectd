@@ -1,0 +1,12 @@
+# Configuration for /etc/init.d/netconnectd
+
+# wifi interface
+#WIFI_IF=wlan0
+
+# Additional arguments to pass to netconnectd
+DAEMON_ARGS="--debug"
+
+# Should we run at startup?
+START=yes
+
+. /etc/netconnectd/detect_parameters

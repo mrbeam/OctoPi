@@ -1,0 +1,44 @@
+[ -n "$WIFI_IF" ] || WIFI_IF=wlan0
+logger -s "Detecting netconnectd parameters for wifi device $WIFI_IF..."
+
+driver_path="/sys/class/net/$WIFI_IF/device/driver"
+if [ ! -e $driver_path ]
+then
+  # no driver, no interface, disable netconnectd
+  logger -s "No driver for $WIFI_IF loaded, disabling netconnectd"
+  START=NO
+  exit 0
+fi
+
+wifi_driver=`basename $(readlink $driver_path)`
+logger -s "Detected wifi driver $wifi_driver"
+
+case "$wifi_driver" in
+  "rt2800usb")
+    # BIG 687, WiPi, PiHut, ...
+    # => we don't need special parameters, this is supported out of the box
+    logger -s "=> no special parameters needed, works out of the box in AP mode"
+    ;;
+  "r8188eu"|"rtl8192cu")
+    # rtl8188eu: TP-Link WN-725, ...
+    # => driver firmware (installed during build), custom hostapd and driver
+    # rtl8192cu: Edimax EW-7811Un, ASUS USB-N10, ...
+    # => custom hostapd and driver
+    logger -s "=> needs custom hostapd binary and driver"
+    hostapd="/etc/netconnectd/hostapds/hostapd_rtl8188"
+    driver="rtl871xdrv"
+    ;;
+  *)
+    # unsupported chipset, disable netconnectd
+    logger -s "=> unsupported chipset, disabling netconnectd"
+    START=no
+    exit 0
+    ;;
+esac
+
+[ -n "$HOSTAPD" ] && HOSTAPD_PARAM="--path-hostapd $HOSTAPD" || [ -n "$hostapd" ] && HOSTAPD_PARAM="--path-hostapd $hostapd" || HOSTAPD_PARAM=
+[ -n "$DRIVER" ] && DRIVER_PARAM="--ap-driver $DRIVER" || [ -n "$driver" ] && DRIVER_PARAM="--ap-driver $driver" || DRIVER_PARAM=
+
+DAEMON_ARGS="$HOSTAPD_PARAM $DRIVER_PARAM $DAEMON_ARGS"
+
+logger -s "Will start netconnectd with additional parameters: $DAEMON_ARGS"

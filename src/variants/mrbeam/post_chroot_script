@@ -1,0 +1,89 @@
+#!/usr/bin/env bash
+set -x
+
+source /common.sh
+install_chroot_fail_on_error_trap
+
+unpack /filesystem/boot /boot
+
+pushd /home/pi
+  
+  if [ "$OCTOPI_INCLUDE_NETCONNECTD" == "yes" ]
+  then
+    apt-get install -y hostapd hostapd dnsmasq rfkill
+
+    gitclone OCTOPI_NETCONNECTD_REPO netconnectd
+    
+    pushd /home/pi/netconnectd
+      # we'll install netconnectd globally and as superuser since it will be a real system service
+
+      # a bunch of dependencies that are not yet on pypi
+      pip install $OCTOPI_NETCONNECTD_DEPENDENCY_WIFI
+      pip install $OCTOPI_NETCONNECTD_DEPENDENCY_WIFIAP
+
+      # the actual netconnectd package
+      python setup.py install
+      python setup.py install_extras
+    popd
+
+    # netconnectd plugin for OctoPrint
+    sudo -u pi /home/pi/oprint/bin/pip install "$OCTOPI_NETCONNECTD_PLUGIN_ARCHIVE"
+
+    ### custom hostapds
+    mkdir -p /etc/netconnectd/hostapds
+
+    # custom hostapds and other dongle stuff
+    sudo -u pi mkdir wifidongles
+    pushd wifidongles
+      
+      # hostapd for rtl8188eu & rtl8192cu
+      gitclone OCTOPI_NETCONNECTD_HOSTAPD_RTL8188_REPO rtl8188
+      pushd rtl8188/hostapd
+        sudo -u pi make
+        cp hostapd /etc/netconnectd/hostapds/hostapd_rtl8188
+        chmod +x /etc/netconnectd/hostapds/hostapd_rtl8188
+      popd
+
+      # rtl8188eu firmware
+      fwfile=rtl8188eufw.bin
+      wget $OCTOPI_NETCONNECTD_HOSTAPD_RTL8188EU_FW -O"$fwfile"
+      cp "$fwfile" /lib/firmware/rtlwifi/rtl8188eufw.bin
+
+    popd
+    sudo -u pi rm -rf wifidongles
+  fi
+
+popd
+
+unpack /filesystem/root-post /
+
+if [ "$OCTOPI_INCLUDE_NETCONNECTD" == "yes" ]
+then
+  #set dhclient DHCP timeout to 30s (needed for system to abort connection attemps in case of wrong wifi key)
+  sed -i 's@#timeout 60;@timeout 30;@' /etc/dhcp/dhclient.conf
+
+  # disable system attempts of using wpa_supplicant, netconnectd will take care of this for us
+  sed -i 's@wpa-roam@#wpa-roam@' /etc/network/interfaces
+  sed -i 's@wpa-conf@#wpa-conf@' /etc/network/interfaces
+
+  # disable ifplugd handling of anything but eth0, that might interfer with our hostapd 
+  # (see http://sirlagz.net/2013/02/10/how-to-use-the-raspberry-pi-as-a-wireless-access-pointrouter-part-3b/)
+  sed -i 's@HOTPLUG_INTERFACES="all"@HOTPLUG_INTERFACES="eth0"@' /etc/default/ifplugd
+
+  # make netconnectd autostart
+  update-rc.d netconnectd defaults 90
+  
+  # hostapd and dnsmasq must not start automatically
+  update-rc.d -f hostapd remove
+  update-rc.d -f dnsmasq remove
+else
+  # no netconnectd, remove stuff
+  rm -r /etc/netconnectd
+  rm /etc/init.d/netconnectd
+  rm /etc/init.d/default
+fi
+
+source chroot_mrbeam
+
+#cleanup
+apt-get -y clean

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# variant example, flavor nightly: override hostname & octoprint branch
+
+### adjust / override octopi config
+# OctoPrint repo & branch
+OCTOPI_OCTOPRINT_REPO_BRANCH=mrbeam
+
+### additional mrbeam stuff
+# Inkscape Extension
+OCTOPI_INKEX_REPO_BRANCH=mrbeam
+
+# lcd driver
+OCTOPI_LCD_REPO_BRANCH=mrbeam

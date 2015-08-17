@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+# variant example, flavor default: override hostname & custom config setting
+
+### adjust / override octopi config
+# OctoPrint repo & branch
+OCTOPI_OVERRIDE_HOSTNAME=mrbeam
+OCTOPI_OCTOPRINT_REPO_SHIP=https://github.com/mrbeam/OctoPrint.git
+OCTOPI_OCTOPRINT_REPO_BUILD=
+OCTOPI_OCTOPRINT_REPO_BRANCH=mrbeam-stable
+
+# omit octopanel & cura
+OCTOPI_INCLUDE_OCTOPIPANEL=no
+OCTOPI_INCLUDE_CURAENGINE=no
+
+### additional mrbeam stuff
+# Inkscape Extension
+OCTOPI_INKEX_REPO_SHIP=https://github.com/mrbeam/mrbeam-inkscape-ext.git
+OCTOPI_INKEX_REPO_BUILD=
+OCTOPI_INKEX_REPO_BRANCH=mrbeam-stable
+OCTOPI_INCLUDE_INKEX=yes
+
+# netconnectd
+OCTOPI_INCLUDE_NETCONNECTD=yes
+
+OCTOPI_NETCONNECTD_DEPENDENCY_WIFI=https://github.com/foosel/wifi/archive/wifi-ap.zip
+OCTOPI_NETCONNECTD_DEPENDENCY_WIFIAP=https://github.com/foosel/wifi-ap/archive/master.zip
+OCTOPI_NETCONNECTD_REPO_SHIP=https://github.com/foosel/netconnectd
+OCTOPI_NETCONNECTD_REPO_BUILD=
+OCTOPI_NETCONNECTD_REPO_BRANCH=wifi-ap
+
+OCTOPI_NETCONNECTD_PLUGIN_VERSION=master
+OCTOPI_NETCONNECTD_PLUGIN_ARCHIVE=https://github.com/OctoPrint/OctoPrint-Netconnectd/archive/${OCTOPI_NETCONNECTD_PLUGIN_VERSION}.zip
+
+OCTOPI_NETCONNECTD_HOSTAPD_RTL8188_REPO_SHIP=https://github.com/jenssegers/RTL8188-hostapd
+OCTOPI_NETCONNECTD_HOSTAPD_RTL8188_REPO_BUILD=https://github.com/jenssegers/RTL8188-hostapd
+OCTOPI_NETCONNECTD_HOSTAPD_RTL8188_REPO_BRANCH=
+
+OCTOPI_NETCONNECTD_HOSTAPD_RTL8188EU_FW=https://github.com/lwfinger/rtl8188eu/raw/v4.1.8_9499/rtl8188eufw.bin
+
+# lcd driver
+OCTOPI_LCD_REPO_SHIP=https://github.com/mrbeam/lcd.git
+OCTOPI_LCD_REPO_BUILD=
+OCTOPI_LCD_REPO_BRANCH=mrbeam-stable
+OCTOPI_INCLUDE_LCD=yes
+
+
+
+
