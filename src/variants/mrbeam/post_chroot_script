@@ -83,7 +83,46 @@ else
   rm /etc/init.d/default
 fi
 
-source chroot_mrbeam
+sudo apt-get -y install python-dev python-setuptools libtiff4-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.5-dev tk8.5-dev python-tk python-pip
+pip install Pillow webcolors
+
+# libxml2 for parsing svg files
+sudo apt-get -y install python-lxml
+
+# TODO necessary ?
+#sudo apt-get -y install firmware-ralink 
+# install netconnectd deps (https://github.com/foosel/netconnectd)
+#sudo apt-get -y install hostapd dnsmasq logrotate
+#sudo update-rc.d -f hostapd remove
+#sudo update-rc.d -f dnsmasq remove
+
+pushd /home/pi
+  
+  #LC Display code
+  gitclone OCTOPI_LCD_REPO lcd
+  pushd lcd
+	
+  popd
+
+# TODO safely remove
+  # disabled until rewrite
+  # update plugin for octoprint
+  #sudo -u pi git clone https://github.com/mrbeam/updateplugin.git
+  #pushd updateplugin
+  #    #sudo -u pi git checkout mrbeam-stable
+  #    sudo -u pi /home/pi/oprint/bin/python setup.py install
+  #popd
+ 
+  # mrbeam inkscape ext // for svg2gcode plugin
+  gitclone OCTOPI_INKEX_REPO mrbeam-inkscape-ext
+  pushd mrbeam-inkscape-ext
+
+  popd
+
+popd
+
+# enable the lc display at start
+sudo update-rc.d lcdisplay defaults 99
 
 #cleanup
 apt-get -y clean
