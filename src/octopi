@@ -32,10 +32,10 @@ install_fail_on_error_trap $OCTOPI_MOUNT_PATH
 unmount_image $OCTOPI_MOUNT_PATH || true
 
 pushd $OCTOPI_WORKSPACE
-  if [ -e *.img ]; then  
-    rm *.img
-  fi
-  unzip $OCTOPI_ZIP_IMG
+#  if [ -e *.img ]; then  
+#    rm *.img
+#  fi
+#  unzip $OCTOPI_ZIP_IMG
   OCTOPI_IMG_PATH=`ls | grep .img`
 
   # mount root and boot partition
