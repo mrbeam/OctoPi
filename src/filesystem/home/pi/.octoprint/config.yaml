@@ -1,15 +1,3 @@
-plugins:
-    softwareupdate:
-        checks:
-            octoprint:
-                update_folder: /home/pi/OctoPrint
-                type: github_commit
-                repo: OctoPrint
-                user: mrbeam
-                branch: mrbeam-stable
-        octoprint_restart_command: sudo service octoprint restart
-        environment_restart_command: sudo reboot
-        cache_ttl: 60
 webcam:
   stream: /webcam/?action=stream
   snapshot: http://127.0.0.1:8080/?action=snapshot
@@ -21,8 +9,31 @@ plugins:
     publicPort: 80
   softwareupdate:
     checks:
-      octoprint:
-        update_folder: /home/pi/OctoPrint
+		octoprint:
+			update_folder: /home/pi/OctoPrint
+			type: github_commit
+			repo: OctoPrint
+			user: mrbeam
+			branch: mrbeam-stable
+		svgtogcode:
+			update_folder: /home/pi/mrbeam-inkscape-ext
+			type: github_commit
+			repo: mrbeam-inkscape-ext
+			user: mrbeam
+			branch: mrbeam-stable
+		lcd:
+			update_folder: /home/pi/lcd
+			type: github_commit
+			repo: lcd
+			user: mrbeam
+			branch: mrbeam-stable
+		netconnectd:
+			update_folder: /home/pi/netconnectd
+			type: github_commit
+			repo: lcd
+			user: mrbeam
+            branch: mrbeam-stable
+        cache_ttl: 60
     octoprint_restart_command: sudo service octoprint restart
     environment_restart_command: sudo shutdown -r now
 system:
