@@ -10,7 +10,7 @@ pushd /home/pi
   
   if [ "$OCTOPI_INCLUDE_NETCONNECTD" == "yes" ]
   then
-    apt-get install -y hostapd hostapd dnsmasq rfkill
+    apt-get install -y hostapd hostapd dnsmasq rfkill avrdude
 
     gitclone OCTOPI_NETCONNECTD_REPO netconnectd
     
