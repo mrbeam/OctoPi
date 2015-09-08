@@ -10,7 +10,7 @@ pushd /home/pi
   
   if [ "$OCTOPI_INCLUDE_NETCONNECTD" == "yes" ]
   then
-    apt-get install -y hostapd hostapd dnsmasq rfkill avrdude
+    apt-get install -y hostapd hostapd dnsmasq rfkill
 
     gitclone OCTOPI_NETCONNECTD_REPO netconnectd
     
@@ -88,6 +88,9 @@ pip install Pillow webcolors
 
 # libxml2 for parsing svg files
 sudo apt-get -y install python-lxml
+
+# install avrdude for grbl flashing
+sudo apt-get -y install avrdude
 
 # TODO necessary ?
 #sudo apt-get -y install firmware-ralink 
