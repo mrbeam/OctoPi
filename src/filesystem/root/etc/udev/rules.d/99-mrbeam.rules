@@ -1,1 +1,2 @@
-SUBSYSTEMS=="usb", ATTRS{idProduct}=="0043", ATTRS{idVendor}=="2341", SYMLINK+="arduino ttyMrBeam"
+SUBSYSTEMS=="usb", ATTRS{idProduct}=="0043", ATTRS{idVendor}=="2341", SYMLINK+="MrBeam"
+SUBSYSTEMS=="usb", ATTRS{idProduct}=="6015", ATTRS{idVendor}=="0403", SYMLINK+="MrBeam"
