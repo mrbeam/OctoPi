@@ -1,2 +1,6 @@
 src/config.local
 src/image/*.zip
+.idea
+src/build.log
+src/workspace/
+src/workspace-mrbeam/
