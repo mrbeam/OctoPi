@@ -7,35 +7,35 @@ plugins:
     cura_engine: /usr/local/bin/cura_engine
   discovery:
     publicPort: 80
-  softwareupdate:
-    checks:
-      octoprint:
-        update_folder: /home/pi/OctoPrint
-        type: github_commit
-        repo: OctoPrint
-        user: mrbeam
-        branch: mrbeam-stable
-      svgtogcode:
-        update_folder: /home/pi/mrbeam-inkscape-ext
-        type: github_commit
-        repo: mrbeam-inkscape-ext
-        user: mrbeam
-        branch: mrbeam-stable
-      lcd:
-        update_folder: /home/pi/lcd
-        type: github_commit
-        repo: lcd
-        user: mrbeam
-        branch: mrbeam-stable
-      netconnectd:
-        update_folder: /home/pi/netconnectd
-        type: github_commit
-        repo: lcd
-        user: mrbeam
-        branch: mrbeam-stable
-    cache_ttl: 60
-    octoprint_restart_command: sudo service octoprint restart
-    environment_restart_command: sudo shutdown -r now
+  #softwareupdate:
+  #  checks:
+  #    octoprint:
+  #      update_folder: /home/pi/OctoPrint
+  #      type: github_commit
+  #      repo: OctoPrint
+  #      user: mrbeam
+  #      branch: mrbeam-stable
+  #    svgtogcode:
+  #      update_folder: /home/pi/mrbeam-inkscape-ext
+  #      type: github_commit
+  #      repo: mrbeam-inkscape-ext
+  #      user: mrbeam
+  #      branch: mrbeam-stable
+  #    lcd:
+  #      update_folder: /home/pi/lcd
+  #     type: github_commit
+  #      repo: lcd
+  #      user: mrbeam
+  #      branch: mrbeam-stable
+  #    netconnectd:
+  #      update_folder: /home/pi/netconnectd
+  #      type: github_commit
+  #      repo: lcd
+  #      user: mrbeam
+  #      branch: mrbeam-stable
+  #  cache_ttl: 60
+  #  octoprint_restart_command: sudo service octoprint restart
+  #  environment_restart_command: sudo shutdown -r now
 system:
   actions:
   - name: Shutdown
