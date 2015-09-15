@@ -17,7 +17,7 @@ OCTOPI_INCLUDE_CURAENGINE=no
 # Inkscape Extension
 OCTOPI_INKEX_REPO_SHIP=https://github.com/mrbeam/mrbeam-inkscape-ext.git
 OCTOPI_INKEX_REPO_BUILD=
-OCTOPI_INKEX_REPO_BRANCH=mrbeam-stable
+OCTOPI_INKEX_REPO_BRANCH=stable-1.2.2
 OCTOPI_INCLUDE_INKEX=yes
 
 # netconnectd
@@ -25,9 +25,9 @@ OCTOPI_INCLUDE_NETCONNECTD=yes
 
 OCTOPI_NETCONNECTD_DEPENDENCY_WIFI=https://github.com/foosel/wifi/archive/wifi-ap.zip
 OCTOPI_NETCONNECTD_DEPENDENCY_WIFIAP=https://github.com/foosel/wifi-ap/archive/master.zip
-OCTOPI_NETCONNECTD_REPO_SHIP=https://github.com/foosel/netconnectd
+OCTOPI_NETCONNECTD_REPO_SHIP=https://github.com/mrbeam/netconnectd
 OCTOPI_NETCONNECTD_REPO_BUILD=
-OCTOPI_NETCONNECTD_REPO_BRANCH=wifi-ap
+OCTOPI_NETCONNECTD_REPO_BRANCH=stable-1.2.2
 
 OCTOPI_NETCONNECTD_PLUGIN_VERSION=master
 OCTOPI_NETCONNECTD_PLUGIN_ARCHIVE=https://github.com/OctoPrint/OctoPrint-Netconnectd/archive/${OCTOPI_NETCONNECTD_PLUGIN_VERSION}.zip
@@ -41,7 +41,7 @@ OCTOPI_NETCONNECTD_HOSTAPD_RTL8188EU_FW=https://github.com/lwfinger/rtl8188eu/ra
 # lcd driver
 OCTOPI_LCD_REPO_SHIP=https://github.com/mrbeam/lcd.git
 OCTOPI_LCD_REPO_BUILD=
-OCTOPI_LCD_REPO_BRANCH=mrbeam-stable
+OCTOPI_LCD_REPO_BRANCH=stable-1.2.2
 OCTOPI_INCLUDE_LCD=yes
 
 
