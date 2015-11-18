@@ -10,9 +10,9 @@ plugins:
   softwareupdate:
     checks:
       octoprint:
-        current: c1355e4581c2f57db2b6eccb113a7ef4445a162a
+        current: be5fd41f610aa2dca8cb7f0a59290aea0fe73cbc
       svgtogcode:
-        current: 57222a8f0b14f3921cc1fdc7c33e0aa308ceb416
+        current: 329bdcccd22aa687004376a7054b2f87bbd459fd
       lcd:
         current: 00d7f80b9664e0b7d60386ca7338ae31ce3e2083
       netconnectd:
