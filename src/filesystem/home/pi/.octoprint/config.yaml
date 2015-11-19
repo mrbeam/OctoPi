@@ -10,12 +10,16 @@ plugins:
   softwareupdate:
     checks:
       octoprint:
+        type: github_commit
         current: be5fd41f610aa2dca8cb7f0a59290aea0fe73cbc
       svgtogcode:
+        type: github_commit
         current: 329bdcccd22aa687004376a7054b2f87bbd459fd
       lcd:
+        type: github_commit
         current: 00d7f80b9664e0b7d60386ca7338ae31ce3e2083
       netconnectd:
+        type: github_commit
         current: 314b108a29448712a4adaf9feaa92af9176e289a
 system:
   actions:
