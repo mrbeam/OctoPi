@@ -8,6 +8,7 @@ plugins:
   discovery:
     publicPort: 80
   softwareupdate:
+    _config_version: 3
     checks:
       octoprint:
         type: github_commit
